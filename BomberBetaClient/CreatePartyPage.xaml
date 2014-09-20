@@ -1,0 +1,60 @@
+﻿<Page x:Class="BomberBetaClient.CreatePartyPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="650"
+	Title="CreatePartyPage" xmlns:my="clr-namespace:BomberContracts_WCF;assembly=BomberContracts_WCF">
+    <Page.Resources>
+        <CollectionViewSource x:Key="playerDCViewSource" d:DesignSource="{d:DesignInstance my:PlayerDC, CreateList=True}" />
+    </Page.Resources>
+    <Grid DataContext="{StaticResource playerDCViewSource}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="425*" />
+            <RowDefinition Height="125*" />
+        </Grid.RowDefinitions>
+        <ListView ItemsSource="{Binding}" Margin="93,122,74,45" Name="playerDCListView" SelectionMode="Multiple">
+            <ListView.ItemContainerStyle>
+                <Style>
+                    <Setter Property="Control.HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="Control.VerticalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn x:Name="loginColumn" Header="Login" Width="125">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Path=Login}" Margin="6,-1,-6,-1" HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="pseudonymColumn" Header="Pseudonym" Width="125">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Path=Pseudonym}" Margin="-6,-1" HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="numberOfVictoriesColumn" Header="Number Of Victories">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Path=NumberOfVictories}" Margin="-6,-1" HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="statusColumn" Header="Status" Width="110">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Path=PlayerStatus}" Margin="-6,-1" HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label Content="Choose friends :" Height="28" HorizontalAlignment="Left" Margin="93,47,0,0" Name="label1" VerticalAlignment="Top" />
+        <Button Content="Invite friends" Grid.Row="1" Height="23" HorizontalAlignment="Right" Margin="0,0,182,0" Name="button1" VerticalAlignment="Top" Width="105" Click="OnInviteFriends" />
+    </Grid>
+</Page>

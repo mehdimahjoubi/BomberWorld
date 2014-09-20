@@ -1,0 +1,10 @@
+C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\BomberServer\bin\Debug\BomberServer.exe.config
+C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\BomberServer\bin\Debug\BomberServer.exe
+C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\BomberServer\bin\Debug\BomberServer.pdb
+C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\BomberServer\bin\Debug\BomberRepository.dll
+C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\BomberServer\bin\Debug\BomberRepository.pdb
+C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\BomberServer\obj\x86\Debug\BomberServer.csprojResolveAssemblyReference.cache
+C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\BomberServer\obj\x86\Debug\BomberServer.exe
+C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\BomberServer\obj\x86\Debug\BomberServer.pdb
+C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\BomberServer\bin\Debug\BomberContracts_WCF.dll
+C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\BomberServer\bin\Debug\BomberContracts_WCF.pdb

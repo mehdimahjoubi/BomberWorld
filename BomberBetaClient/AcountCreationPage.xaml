@@ -1,0 +1,32 @@
+﻿<Page x:Class="BomberBetaClient.AcountCreationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="620"
+	Title="AcountCreationPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="172*" />
+            <ColumnDefinition Width="448*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="0.25*" />
+        </Grid.RowDefinitions>
+        <Label Content="Login :" Height="28" HorizontalAlignment="Right" Margin="0,35,74,0" Name="label1" VerticalAlignment="Top" />
+        <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="18,35,0,0" Name="_login" VerticalAlignment="Top" Width="120" />
+        <Label Content="Password :" Grid.Row="1" Height="28" HorizontalAlignment="Right" Margin="0,20,53,0" Name="label2" VerticalAlignment="Top" />
+        <TextBox Grid.Column="1" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="18,20,0,0" Name="_password" VerticalAlignment="Top" Width="120" />
+        <Label Content="Pseudonym :" Grid.Row="2" Height="28" HorizontalAlignment="Right" Margin="0,20,41,0" Name="label3" VerticalAlignment="Top" />
+        <TextBox Grid.Column="1" Grid.Row="2" Height="23" HorizontalAlignment="Left" Margin="18,20,0,0" Name="_pseudonym" VerticalAlignment="Top" Width="120" />
+        <Label Content="Describe yourself :" Grid.Row="3" Height="28" HorizontalAlignment="Right" Margin="0,20,0,0" Name="label4" VerticalAlignment="Top" Width="119" />
+        <TextBox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" Margin="18,20,57,28" Name="_playerDescription" VerticalAlignment="Stretch" TextWrapping="Wrap" AcceptsReturn="True"/>
+        <Button Content="Submit" Grid.Column="1" Grid.Row="4" Height="23" HorizontalAlignment="Right" Margin="0,0,126,0" Name="button1" VerticalAlignment="Top" Width="75" Click="OnSubmitSubscription" />
+    </Grid>
+</Page>

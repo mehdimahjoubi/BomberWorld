@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="BomberDataModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+  <EntityContainer Name="BomberDbContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="BomberDataModel.Account" />
+    <EntitySet Name="Players" EntityType="BomberDataModel.Player" />
+    <EntitySet Name="Games" EntityType="BomberDataModel.Game" />
+    <EntitySet Name="Conversations" EntityType="BomberDataModel.Conversation" />
+    <AssociationSet Name="AccountPlayer" Association="BomberDataModel.AccountPlayer">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Player" EntitySet="Players" />
+    </AssociationSet>
+    <AssociationSet Name="ConversationPlayerParticipation" Association="BomberDataModel.ConversationPlayer">
+      <End Role="Conversation" EntitySet="Conversations" />
+      <End Role="Player" EntitySet="Players" />
+    </AssociationSet>
+    <AssociationSet Name="PlayerConversationHosting" Association="BomberDataModel.PlayerConversation">
+      <End Role="Player" EntitySet="Players" />
+      <End Role="Conversation" EntitySet="Conversations" />
+    </AssociationSet>
+    <AssociationSet Name="PlayerGameWinning" Association="BomberDataModel.PlayerGame">
+      <End Role="Player" EntitySet="Players" />
+      <End Role="Game" EntitySet="Games" />
+    </AssociationSet>
+    <AssociationSet Name="ConversationGame" Association="BomberDataModel.ConversationGame">
+      <End Role="Conversation" EntitySet="Conversations" />
+      <End Role="Game" EntitySet="Games" />
+    </AssociationSet>
+    <AssociationSet Name="Friendships" Association="BomberDataModel.PlayerPlayer">
+      <End Role="Player" EntitySet="Players" />
+      <End Role="Player1" EntitySet="Players" />
+    </AssociationSet>
+    <AssociationSet Name="FriendshipRequests" Association="BomberDataModel.FriendshipRequests">
+      <End Role="Player" EntitySet="Players" />
+      <End Role="Player1" EntitySet="Players" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="AccountId" />
+    </Key>
+    <Property Type="Int32" Name="AccountId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Login" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="Password" Nullable="false" />
+    <Property Type="String" Name="AccountType" Nullable="false" />
+    <NavigationProperty Name="Player" Relationship="BomberDataModel.AccountPlayer" FromRole="Account" ToRole="Player" />
+  </EntityType>
+  <EntityType Name="Player">
+    <Key>
+      <PropertyRef Name="PlayerId" />
+    </Key>
+    <Property Type="Int32" Name="PlayerId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Pseudonym" Nullable="false" />
+    <Property Type="String" Name="PlayerStatus" Nullable="false" />
+    <Property Type="String" Name="PlayerDescription" Nullable="true" />
+    <NavigationProperty Name="Account" Relationship="BomberDataModel.AccountPlayer" FromRole="Player" ToRole="Account" />
+    <NavigationProperty Name="Conversations" Relationship="BomberDataModel.ConversationPlayer" FromRole="Player" ToRole="Conversation" />
+    <NavigationProperty Name="HostedConversations" Relationship="BomberDataModel.PlayerConversation" FromRole="Player" ToRole="Conversation" />
+    <NavigationProperty Name="WinnedGames" Relationship="BomberDataModel.PlayerGame" FromRole="Player" ToRole="Game" />
+    <NavigationProperty Name="Friends" Relationship="BomberDataModel.PlayerPlayer" FromRole="Player" ToRole="Player1" />
+    <NavigationProperty Name="FriendshipRequestedPlayers" Relationship="BomberDataModel.FriendshipRequests" FromRole="Player" ToRole="Player1" />
+    <NavigationProperty Name="PlayersRequestingFriendship" Relationship="BomberDataModel.FriendshipRequests" FromRole="Player1" ToRole="Player" />
+  </EntityType>
+  <EntityType Name="Game">
+    <Key>
+      <PropertyRef Name="GameId" />
+    </Key>
+    <Property Type="Int32" Name="GameId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Winner" Relationship="BomberDataModel.PlayerGame" FromRole="Game" ToRole="Player" />
+    <Property Type="Int32" Name="WinnerPlayerId" Nullable="true" />
+    <NavigationProperty Name="Conversation" Relationship="BomberDataModel.ConversationGame" FromRole="Game" ToRole="Conversation" />
+  </EntityType>
+  <EntityType Name="Conversation">
+    <Key>
+      <PropertyRef Name="ConversationId" />
+    </Key>
+    <Property Type="Int32" Name="ConversationId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="ConversationLog" Nullable="false" />
+    <NavigationProperty Name="Players" Relationship="BomberDataModel.ConversationPlayer" FromRole="Conversation" ToRole="Player" />
+    <NavigationProperty Name="Host" Relationship="BomberDataModel.PlayerConversation" FromRole="Conversation" ToRole="Player" />
+    <Property Type="Int32" Name="HostPlayerId" Nullable="false" />
+    <NavigationProperty Name="CurrentGame" Relationship="BomberDataModel.ConversationGame" FromRole="Conversation" ToRole="Game" />
+  </EntityType>
+  <Association Name="AccountPlayer">
+    <End Type="BomberDataModel.Account" Role="Account" Multiplicity="1" />
+    <End Type="BomberDataModel.Player" Role="Player" Multiplicity="1" />
+  </Association>
+  <Association Name="ConversationPlayer">
+    <End Type="BomberDataModel.Conversation" Role="Conversation" Multiplicity="*" />
+    <End Type="BomberDataModel.Player" Role="Player" Multiplicity="*" />
+  </Association>
+  <Association Name="PlayerConversation">
+    <End Type="BomberDataModel.Player" Role="Player" Multiplicity="1" />
+    <End Type="BomberDataModel.Conversation" Role="Conversation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="PlayerId" />
+      </Principal>
+      <Dependent Role="Conversation">
+        <PropertyRef Name="HostPlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PlayerGame">
+    <End Type="BomberDataModel.Player" Role="Player" Multiplicity="0..1" />
+    <End Type="BomberDataModel.Game" Role="Game" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="PlayerId" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="WinnerPlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ConversationGame">
+    <End Type="BomberDataModel.Conversation" Role="Conversation" Multiplicity="0..1" />
+    <End Type="BomberDataModel.Game" Role="Game" Multiplicity="0..1" />
+  </Association>
+  <Association Name="PlayerPlayer">
+    <End Type="BomberDataModel.Player" Role="Player" Multiplicity="*" />
+    <End Type="BomberDataModel.Player" Role="Player1" Multiplicity="*" />
+  </Association>
+  <Association Name="FriendshipRequests">
+    <End Type="BomberDataModel.Player" Role="Player" Multiplicity="*" />
+    <End Type="BomberDataModel.Player" Role="Player1" Multiplicity="*" />
+  </Association>
+</Schema>

@@ -1,0 +1,5 @@
+C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\BomberContracts_WCF\bin\Debug\BomberContracts_WCF.dll
+C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\BomberContracts_WCF\bin\Debug\BomberContracts_WCF.pdb
+C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\BomberContracts_WCF\obj\Debug\BomberContracts_WCF.dll
+C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\BomberContracts_WCF\obj\Debug\BomberContracts_WCF.pdb
+C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\BomberContracts_WCF\obj\Debug\BomberContracts_WCF.csprojResolveAssemblyReference.cache

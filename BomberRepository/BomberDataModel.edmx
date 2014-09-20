@@ -1,0 +1,509 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BomberDataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="BomberDataModelStoreContainer">
+    <EntitySet Name="Accounts" EntityType="BomberDataModel.Store.Accounts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Players" EntityType="BomberDataModel.Store.Players" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Games" EntityType="BomberDataModel.Store.Games" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Conversations" EntityType="BomberDataModel.Store.Conversations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ConversationPlayerParticipation" EntityType="BomberDataModel.Store.ConversationPlayer" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Friendships" EntityType="BomberDataModel.Store.PlayerPlayer" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FriendshipRequests" EntityType="BomberDataModel.Store.FriendshipRequests" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="AccountPlayer" Association="BomberDataModel.Store.AccountPlayer">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Player" EntitySet="Players" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConversationPlayerParticipation_Conversation" Association="BomberDataModel.Store.FK_ConversationPlayer_Conversation">
+      <End Role="Conversation" EntitySet="Conversations" />
+      <End Role="ConversationPlayer" EntitySet="ConversationPlayerParticipation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConversationPlayerParticipation_Player" Association="BomberDataModel.Store.FK_ConversationPlayer_Player">
+      <End Role="Player" EntitySet="Players" />
+      <End Role="ConversationPlayer" EntitySet="ConversationPlayerParticipation" />
+    </AssociationSet>
+    <AssociationSet Name="PlayerConversationHosting" Association="BomberDataModel.Store.PlayerConversation">
+      <End Role="Player" EntitySet="Players" />
+      <End Role="Conversation" EntitySet="Conversations" />
+    </AssociationSet>
+    <AssociationSet Name="PlayerGameWinning" Association="BomberDataModel.Store.PlayerGame">
+      <End Role="Player" EntitySet="Players" />
+      <End Role="Game" EntitySet="Games" />
+    </AssociationSet>
+    <AssociationSet Name="ConversationGame" Association="BomberDataModel.Store.ConversationGame">
+      <End Role="Conversation" EntitySet="Conversations" />
+      <End Role="Game" EntitySet="Games" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Friendships_Player" Association="BomberDataModel.Store.FK_PlayerPlayer_Player">
+      <End Role="Player" EntitySet="Players" />
+      <End Role="PlayerPlayer" EntitySet="Friendships" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Friendships_Player1" Association="BomberDataModel.Store.FK_PlayerPlayer_Player1">
+      <End Role="Player1" EntitySet="Players" />
+      <End Role="PlayerPlayer" EntitySet="Friendships" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FriendshipRequests_Player" Association="BomberDataModel.Store.FK_FriendshipRequests_Player">
+      <End Role="Player" EntitySet="Players" />
+      <End Role="FriendshipRequests" EntitySet="FriendshipRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FriendshipRequests_Player1" Association="BomberDataModel.Store.FK_FriendshipRequests_Player1">
+      <End Role="Player1" EntitySet="Players" />
+      <End Role="FriendshipRequests" EntitySet="FriendshipRequests" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Accounts">
+    <Key>
+      <PropertyRef Name="AccountId" />
+    </Key>
+    <Property Name="AccountId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AccountType" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Player_PlayerId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Players">
+    <Key>
+      <PropertyRef Name="PlayerId" />
+    </Key>
+    <Property Name="PlayerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Pseudonym" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PlayerStatus" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PlayerDescription" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Games">
+    <Key>
+      <PropertyRef Name="GameId" />
+    </Key>
+    <Property Name="GameId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WinnerPlayerId" Type="int" Nullable="true" />
+    <Property Name="Conversation_ConversationId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Conversations">
+    <Key>
+      <PropertyRef Name="ConversationId" />
+    </Key>
+    <Property Name="ConversationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ConversationLog" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="HostPlayerId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ConversationPlayer">
+    <Key>
+      <PropertyRef Name="Conversations_ConversationId" />
+      <PropertyRef Name="Players_PlayerId" />
+    </Key>
+    <Property Name="Conversations_ConversationId" Type="int" Nullable="false" />
+    <Property Name="Players_PlayerId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PlayerPlayer">
+    <Key>
+      <PropertyRef Name="PlayerPlayer_Player1_PlayerId" />
+      <PropertyRef Name="Friends_PlayerId" />
+    </Key>
+    <Property Name="PlayerPlayer_Player1_PlayerId" Type="int" Nullable="false" />
+    <Property Name="Friends_PlayerId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FriendshipRequests">
+    <Key>
+      <PropertyRef Name="PlayersRequestingFriendship_PlayerId" />
+      <PropertyRef Name="FriendshipRequestedPlayers_PlayerId" />
+    </Key>
+    <Property Name="PlayersRequestingFriendship_PlayerId" Type="int" Nullable="false" />
+    <Property Name="FriendshipRequestedPlayers_PlayerId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="AccountPlayer">
+    <End Role="Account" Type="BomberDataModel.Store.Accounts" Multiplicity="*" />
+    <End Role="Player" Type="BomberDataModel.Store.Players" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="PlayerId" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="Player_PlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PlayerConversation">
+    <End Role="Player" Type="BomberDataModel.Store.Players" Multiplicity="1" />
+    <End Role="Conversation" Type="BomberDataModel.Store.Conversations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="PlayerId" />
+      </Principal>
+      <Dependent Role="Conversation">
+        <PropertyRef Name="HostPlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PlayerGame">
+    <End Role="Player" Type="BomberDataModel.Store.Players" Multiplicity="0..1" />
+    <End Role="Game" Type="BomberDataModel.Store.Games" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="PlayerId" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="WinnerPlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ConversationGame">
+    <End Role="Conversation" Type="BomberDataModel.Store.Conversations" Multiplicity="0..1" />
+    <End Role="Game" Type="BomberDataModel.Store.Games" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Conversation">
+        <PropertyRef Name="ConversationId" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="Conversation_ConversationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConversationPlayer_Conversation">
+    <End Role="Conversation" Type="BomberDataModel.Store.Conversations" Multiplicity="1" />
+    <End Role="ConversationPlayer" Type="BomberDataModel.Store.ConversationPlayer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Conversation">
+        <PropertyRef Name="ConversationId" />
+      </Principal>
+      <Dependent Role="ConversationPlayer">
+        <PropertyRef Name="Conversations_ConversationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConversationPlayer_Player">
+    <End Role="ConversationPlayer" Type="BomberDataModel.Store.ConversationPlayer" Multiplicity="*" />
+    <End Role="Player" Type="BomberDataModel.Store.Players" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="PlayerId" />
+      </Principal>
+      <Dependent Role="ConversationPlayer">
+        <PropertyRef Name="Players_PlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlayerPlayer_Player">
+    <End Role="Player" Type="BomberDataModel.Store.Players" Multiplicity="1" />
+    <End Role="PlayerPlayer" Type="BomberDataModel.Store.PlayerPlayer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="PlayerId" />
+      </Principal>
+      <Dependent Role="PlayerPlayer">
+        <PropertyRef Name="PlayerPlayer_Player1_PlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlayerPlayer_Player1">
+    <End Role="PlayerPlayer" Type="BomberDataModel.Store.PlayerPlayer" Multiplicity="*" />
+    <End Role="Player1" Type="BomberDataModel.Store.Players" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Player1">
+        <PropertyRef Name="PlayerId" />
+      </Principal>
+      <Dependent Role="PlayerPlayer">
+        <PropertyRef Name="Friends_PlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FriendshipRequests_Player">
+    <End Role="Player" Type="BomberDataModel.Store.Players" Multiplicity="1" />
+    <End Role="FriendshipRequests" Type="BomberDataModel.Store.FriendshipRequests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="PlayerId" />
+      </Principal>
+      <Dependent Role="FriendshipRequests">
+        <PropertyRef Name="PlayersRequestingFriendship_PlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FriendshipRequests_Player1">
+    <End Role="FriendshipRequests" Type="BomberDataModel.Store.FriendshipRequests" Multiplicity="*" />
+    <End Role="Player1" Type="BomberDataModel.Store.Players" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Player1">
+        <PropertyRef Name="PlayerId" />
+      </Principal>
+      <Dependent Role="FriendshipRequests">
+        <PropertyRef Name="FriendshipRequestedPlayers_PlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="BomberDataModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="BomberDbContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="BomberDataModel.Account" />
+          <EntitySet Name="Players" EntityType="BomberDataModel.Player" />
+          <EntitySet Name="Games" EntityType="BomberDataModel.Game" />
+          <EntitySet Name="Conversations" EntityType="BomberDataModel.Conversation" />
+          <AssociationSet Name="AccountPlayer" Association="BomberDataModel.AccountPlayer">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="ConversationPlayerParticipation" Association="BomberDataModel.ConversationPlayer">
+            <End Role="Conversation" EntitySet="Conversations" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="PlayerConversationHosting" Association="BomberDataModel.PlayerConversation">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="Conversation" EntitySet="Conversations" />
+          </AssociationSet>
+          <AssociationSet Name="PlayerGameWinning" Association="BomberDataModel.PlayerGame">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="ConversationGame" Association="BomberDataModel.ConversationGame">
+            <End Role="Conversation" EntitySet="Conversations" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="Friendships" Association="BomberDataModel.PlayerPlayer">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="Player1" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FriendshipRequests" Association="BomberDataModel.FriendshipRequests">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="Player1" EntitySet="Players" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="AccountId" />
+          </Key>
+          <Property Type="Int32" Name="AccountId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Login" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Password" Nullable="false" />
+          <Property Type="String" Name="AccountType" Nullable="false" />
+          <NavigationProperty Name="Player" Relationship="BomberDataModel.AccountPlayer" FromRole="Account" ToRole="Player" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="PlayerId" />
+          </Key>
+          <Property Type="Int32" Name="PlayerId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Pseudonym" Nullable="false" />
+          <Property Type="String" Name="PlayerStatus" Nullable="false" />
+          <Property Type="String" Name="PlayerDescription" Nullable="true" />
+          <NavigationProperty Name="Account" Relationship="BomberDataModel.AccountPlayer" FromRole="Player" ToRole="Account" />
+          <NavigationProperty Name="Conversations" Relationship="BomberDataModel.ConversationPlayer" FromRole="Player" ToRole="Conversation" />
+          <NavigationProperty Name="HostedConversations" Relationship="BomberDataModel.PlayerConversation" FromRole="Player" ToRole="Conversation" />
+          <NavigationProperty Name="WinnedGames" Relationship="BomberDataModel.PlayerGame" FromRole="Player" ToRole="Game" />
+          <NavigationProperty Name="Friends" Relationship="BomberDataModel.PlayerPlayer" FromRole="Player" ToRole="Player1" />
+          <NavigationProperty Name="FriendshipRequestedPlayers" Relationship="BomberDataModel.FriendshipRequests" FromRole="Player" ToRole="Player1" />
+          <NavigationProperty Name="PlayersRequestingFriendship" Relationship="BomberDataModel.FriendshipRequests" FromRole="Player1" ToRole="Player" />
+        </EntityType>
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="GameId" />
+          </Key>
+          <Property Type="Int32" Name="GameId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Winner" Relationship="BomberDataModel.PlayerGame" FromRole="Game" ToRole="Player" />
+          <Property Type="Int32" Name="WinnerPlayerId" Nullable="true" />
+          <NavigationProperty Name="Conversation" Relationship="BomberDataModel.ConversationGame" FromRole="Game" ToRole="Conversation" />
+        </EntityType>
+        <EntityType Name="Conversation">
+          <Key>
+            <PropertyRef Name="ConversationId" />
+          </Key>
+          <Property Type="Int32" Name="ConversationId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ConversationLog" Nullable="false" />
+          <NavigationProperty Name="Players" Relationship="BomberDataModel.ConversationPlayer" FromRole="Conversation" ToRole="Player" />
+          <NavigationProperty Name="Host" Relationship="BomberDataModel.PlayerConversation" FromRole="Conversation" ToRole="Player" />
+          <Property Type="Int32" Name="HostPlayerId" Nullable="false" />
+          <NavigationProperty Name="CurrentGame" Relationship="BomberDataModel.ConversationGame" FromRole="Conversation" ToRole="Game" />
+        </EntityType>
+        <Association Name="AccountPlayer">
+          <End Type="BomberDataModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="BomberDataModel.Player" Role="Player" Multiplicity="1" />
+        </Association>
+        <Association Name="ConversationPlayer">
+          <End Type="BomberDataModel.Conversation" Role="Conversation" Multiplicity="*" />
+          <End Type="BomberDataModel.Player" Role="Player" Multiplicity="*" />
+        </Association>
+        <Association Name="PlayerConversation">
+          <End Type="BomberDataModel.Player" Role="Player" Multiplicity="1" />
+          <End Type="BomberDataModel.Conversation" Role="Conversation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="PlayerId" />
+            </Principal>
+            <Dependent Role="Conversation">
+              <PropertyRef Name="HostPlayerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PlayerGame">
+          <End Type="BomberDataModel.Player" Role="Player" Multiplicity="0..1" />
+          <End Type="BomberDataModel.Game" Role="Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="PlayerId" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="WinnerPlayerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ConversationGame">
+          <End Type="BomberDataModel.Conversation" Role="Conversation" Multiplicity="0..1" />
+          <End Type="BomberDataModel.Game" Role="Game" Multiplicity="0..1" />
+        </Association>
+        <Association Name="PlayerPlayer">
+          <End Type="BomberDataModel.Player" Role="Player" Multiplicity="*" />
+          <End Type="BomberDataModel.Player" Role="Player1" Multiplicity="*" />
+        </Association>
+        <Association Name="FriendshipRequests">
+          <End Type="BomberDataModel.Player" Role="Player" Multiplicity="*" />
+          <End Type="BomberDataModel.Player" Role="Player1" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BomberDataModelStoreContainer" CdmEntityContainer="BomberDbContext">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="IsTypeOf(BomberDataModel.Account)">
+        <MappingFragment StoreEntitySet="Accounts">
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Players">
+      <EntityTypeMapping TypeName="IsTypeOf(BomberDataModel.Player)">
+        <MappingFragment StoreEntitySet="Players">
+          <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+          <ScalarProperty Name="Pseudonym" ColumnName="Pseudonym" />
+          <ScalarProperty Name="PlayerStatus" ColumnName="PlayerStatus" />
+          <ScalarProperty Name="PlayerDescription" ColumnName="PlayerDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Games">
+      <EntityTypeMapping TypeName="IsTypeOf(BomberDataModel.Game)">
+        <MappingFragment StoreEntitySet="Games">
+          <ScalarProperty Name="GameId" ColumnName="GameId" />
+          <ScalarProperty Name="WinnerPlayerId" ColumnName="WinnerPlayerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Conversations">
+      <EntityTypeMapping TypeName="IsTypeOf(BomberDataModel.Conversation)">
+        <MappingFragment StoreEntitySet="Conversations">
+          <ScalarProperty Name="ConversationId" ColumnName="ConversationId" />
+          <ScalarProperty Name="ConversationLog" ColumnName="ConversationLog" />
+          <ScalarProperty Name="HostPlayerId" ColumnName="HostPlayerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AccountPlayer" TypeName="BomberDataModel.AccountPlayer" StoreEntitySet="Accounts">
+      <EndProperty Name="Player">
+        <ScalarProperty Name="PlayerId" ColumnName="Player_PlayerId" />
+      </EndProperty>
+      <EndProperty Name="Account">
+        <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ConversationPlayerParticipation" TypeName="BomberDataModel.ConversationPlayer" StoreEntitySet="ConversationPlayerParticipation">
+      <EndProperty Name="Conversation">
+        <ScalarProperty Name="ConversationId" ColumnName="Conversations_ConversationId" />
+      </EndProperty>
+      <EndProperty Name="Player">
+        <ScalarProperty Name="PlayerId" ColumnName="Players_PlayerId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ConversationGame" TypeName="BomberDataModel.ConversationGame" StoreEntitySet="Games">
+      <EndProperty Name="Conversation">
+        <ScalarProperty Name="ConversationId" ColumnName="Conversation_ConversationId" />
+      </EndProperty>
+      <EndProperty Name="Game">
+        <ScalarProperty Name="GameId" ColumnName="GameId" />
+      </EndProperty>
+      <Condition ColumnName="Conversation_ConversationId" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Friendships" TypeName="BomberDataModel.PlayerPlayer" StoreEntitySet="Friendships">
+      <EndProperty Name="Player">
+        <ScalarProperty Name="PlayerId" ColumnName="PlayerPlayer_Player1_PlayerId" />
+      </EndProperty>
+      <EndProperty Name="Player1">
+        <ScalarProperty Name="PlayerId" ColumnName="Friends_PlayerId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FriendshipRequests" TypeName="BomberDataModel.FriendshipRequests" StoreEntitySet="FriendshipRequests">
+      <EndProperty Name="Player">
+        <ScalarProperty Name="PlayerId" ColumnName="PlayersRequestingFriendship_PlayerId" />
+      </EndProperty>
+      <EndProperty Name="Player1">
+        <ScalarProperty Name="PlayerId" ColumnName="FriendshipRequestedPlayers_PlayerId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="BomberDataModel" >
+        <EntityTypeShape EntityType="BomberDataModel.Account" Width="1.5" PointX="3.125" PointY="6" Height="1.9802864583333339" />
+        <EntityTypeShape EntityType="BomberDataModel.Player" Width="2.25" PointX="5" PointY="2.375" Height="2.9417936197916665" />
+        <EntityTypeShape EntityType="BomberDataModel.Game" Width="1.5" PointX="7.875" PointY="5.875" Height="1.7879850260416661" />
+        <EntityTypeShape EntityType="BomberDataModel.Conversation" Width="1.5" PointX="5.375" PointY="6" Height="2.1725878906249996" IsExpanded="true" />
+        <AssociationConnector Association="BomberDataModel.AccountPlayer">
+          <ConnectorPoint PointX="3.875" PointY="6" />
+          <ConnectorPoint PointX="3.875" PointY="4.6322834740282435" />
+          <ConnectorPoint PointX="5" PointY="4.6322834740282435" />
+        </AssociationConnector>
+        <AssociationConnector Association="BomberDataModel.ConversationPlayer">
+          <ConnectorPoint PointX="6.125" PointY="6" />
+          <ConnectorPoint PointX="6.125" PointY="5.5090950520833326" />
+        </AssociationConnector>
+        <AssociationConnector Association="BomberDataModel.PlayerConversation">
+          <ConnectorPoint PointX="6.5625" PointY="5.5090950520833326" />
+          <ConnectorPoint PointX="6.5625" PointY="6" />
+        </AssociationConnector>
+        <AssociationConnector Association="BomberDataModel.PlayerGame">
+          <ConnectorPoint PointX="7.25" PointY="4.6774135884148924" />
+          <ConnectorPoint PointX="8.625" PointY="4.6774135884148924" />
+          <ConnectorPoint PointX="8.625" PointY="5.875" />
+        </AssociationConnector>
+        <AssociationConnector Association="BomberDataModel.ConversationGame">
+          <ConnectorPoint PointX="6.875" PointY="6.8314925130208328" />
+          <ConnectorPoint PointX="7.875" PointY="6.8314925130208328" />
+        </AssociationConnector>
+        <AssociationConnector Association="BomberDataModel.PlayerPlayer">
+          <ConnectorPoint PointX="7.25" PointY="2.6654096845927344" />
+          <ConnectorPoint PointX="7.5" PointY="2.6654096845927344" />
+          <ConnectorPoint PointX="7.5" PointY="3.9420475260416663" />
+          <ConnectorPoint PointX="7.25" PointY="3.9420475260416663" />
+        </AssociationConnector>
+        <AssociationConnector Association="BomberDataModel.FriendshipRequests">
+          <ConnectorPoint PointX="5" PointY="2.8405474554999066" />
+          <ConnectorPoint PointX="4.75" PointY="2.8405474554999066" />
+          <ConnectorPoint PointX="4.75" PointY="3.9420475260416663" />
+          <ConnectorPoint PointX="5" PointY="3.9420475260416663" />
+        </AssociationConnector>
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

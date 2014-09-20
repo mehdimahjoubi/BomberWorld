@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>bomb.png</Source>
+      <Name>bomb</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\Bomberman\Bomberman\bin\x86\Debug\Content\bomb.xnb</Output>
+      <Time>2013-03-14T10:59:59.1147312+00:00</Time>
+    </Item>
+    <Item>
+      <Source>explosion.png</Source>
+      <Name>explosion</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\Bomberman\Bomberman\bin\x86\Debug\Content\explosion.xnb</Output>
+      <Time>2013-03-14T10:59:59.1597338+00:00</Time>
+    </Item>
+    <Item>
+      <Source>playersSpriteSheet.png</Source>
+      <Name>playersSpriteSheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\Bomberman\Bomberman\bin\x86\Debug\Content\playersSpriteSheet.xnb</Output>
+      <Time>2013-03-14T14:27:53.0321985+00:00</Time>
+    </Item>
+    <Item>
+      <Source>wall.jpg</Source>
+      <Name>wall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\Bomberman\Bomberman\bin\x86\Debug\Content\wall.xnb</Output>
+      <Time>2013-03-14T17:36:53.9228603+00:00</Time>
+    </Item>
+    <Item>
+      <Source>playersSpriteSheet2.png</Source>
+      <Name>playersSpriteSheet2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor">255, 255, 255, 255</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\Bomberman\Bomberman\bin\x86\Debug\Content\playersSpriteSheet2.xnb</Output>
+      <Time>2013-03-16T18:25:55.7432614+00:00</Time>
+    </Item>
+    <Item>
+      <Source>playersSpriteSheet3.png</Source>
+      <Name>playersSpriteSheet3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\Bomberman\Bomberman\bin\x86\Debug\Content\playersSpriteSheet3.xnb</Output>
+      <Time>2013-03-17T10:32:01.4978281+00:00</Time>
+    </Item>
+    <Item>
+      <Source>bomberDeath.png</Source>
+      <Name>bomberDeath</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\Bomberman\Bomberman\bin\x86\Debug\Content\bomberDeath.xnb</Output>
+      <Time>2013-03-17T14:20:21.9053204+00:00</Time>
+    </Item>
+    <Item>
+      <Source>explo.wav</Source>
+      <Name>explo</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\Bomberman\Bomberman\bin\x86\Debug\Content\explo.xnb</Output>
+      <Time>2013-03-17T17:32:13.4748813+00:00</Time>
+    </Item>
+    <Item>
+      <Source>dropBomb0.wav</Source>
+      <Name>dropBomb0</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\Bomberman\Bomberman\bin\x86\Debug\Content\dropBomb0.xnb</Output>
+      <Time>2013-03-17T17:41:02.1949491+00:00</Time>
+    </Item>
+    <Item>
+      <Source>dropBomb.wav</Source>
+      <Name>dropBomb</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\Bomberman\Bomberman\bin\x86\Debug\Content\dropBomb.xnb</Output>
+      <Time>2013-03-17T17:42:16.3031878+00:00</Time>
+    </Item>
+    <Item>
+      <Source>death0.wav</Source>
+      <Name>death0</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\Bomberman\Bomberman\bin\x86\Debug\Content\death0.xnb</Output>
+      <Time>2013-03-17T17:48:57.9830517+00:00</Time>
+    </Item>
+    <Item>
+      <Source>mainTheme.mp3</Source>
+      <Name>mainTheme</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\Bomberman\Bomberman\bin\x86\Debug\Content\mainTheme.xnb</Output>
+      <Extra>C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\Bomberman\Bomberman\bin\x86\Debug\Content\mainTheme.wma</Extra>
+      <Time>2013-03-18T01:52:49.0856644+00:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <TargetPlatform>Windows</TargetPlatform>
+      <TargetProfile>HiDef</TargetProfile>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\Bomberman\BombermanContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\Bomberman\Bomberman\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\Bomberman\BombermanContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\Bomberman\Bomberman\bin\x86\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+00:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2010-08-23T12:41:18+00:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+00:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+00:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+00:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2010-08-23T12:41:18+00:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2013-03-12T12:58:52.3131577+00:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>

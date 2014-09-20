@@ -1,0 +1,34 @@
+﻿<Page x:Class="BomberBetaClient.ConversationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="650"
+	Title="ConversationPage" xmlns:my="clr-namespace:BomberContracts_WCF;assembly=BomberContracts_WCF">
+    <Page.Resources>
+        <CollectionViewSource x:Key="conversationDCViewSource" d:DesignSource="{d:DesignInstance my:ConversationDC, CreateList=True}" />
+    </Page.Resources>
+    <Grid DataContext="{StaticResource conversationDCViewSource}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="92" />
+            <RowDefinition Height="343*" />
+            <RowDefinition Height="115" />
+        </Grid.RowDefinitions>
+        <ScrollViewer VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="12,35,12,13" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
+            <Border BorderThickness="1" BorderBrush="Gray">
+                <TextBlock Name="textBlock1" Text="{Binding Path=ParticipantsNames}" TextWrapping="NoWrap" />
+            </Border>
+        </ScrollViewer>
+        <ScrollViewer Name="_convLogScroller" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch" Grid.Row="1" Margin="12,35,12,13">
+            <TextBlock Name="textBlock2" Text="{Binding Path=ConversationLog}" TextWrapping="Wrap"/>
+        </ScrollViewer>
+        <TextBox Name="_convMsgArea" Text="{Binding Path=NewMessage}" TextWrapping="Wrap" Grid.Row="2" HorizontalAlignment="Stretch" Margin="12,0,12,12" VerticalAlignment="Stretch" KeyDown="OnPartyMsgAreaKeyDown" />
+        <Button Content="Leave" Grid.Row="1" Height="23" HorizontalAlignment="Right" Margin="0,0,29,0" Name="_leaveBtn" VerticalAlignment="Top" Width="97" Visibility="Hidden" Click="OnLeaveParty" />
+        <Button Name="_delConvBtn" Content="Delete party" Grid.Row="1" Height="23" HorizontalAlignment="Right" Margin="0,0,29,0" VerticalAlignment="Top" Width="97" Visibility="Visible" Click="OnDeleteParty" />
+        <Button Content="Invite friends" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="26,0,0,0" Name="_inviteBtn" VerticalAlignment="Top" Width="102" Click="OnInviteToParty" />
+        <Button Content="Kick friends" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="134,0,0,0" Name="_kickBtn" VerticalAlignment="Top" Width="88" Click="OnKickFromParty" />
+        <Button Content="Main room" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="279,0,0,0" Name="_mainRoomBtn" VerticalAlignment="Top" Width="95" Click="OnMainRoombtnClicked" />
+        <Button Name="_playBtn" Content="Play!" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="409,0,0,0" VerticalAlignment="Top" Width="55" Click="OnStartGameBtnClicked" />
+    </Grid>
+</Page>

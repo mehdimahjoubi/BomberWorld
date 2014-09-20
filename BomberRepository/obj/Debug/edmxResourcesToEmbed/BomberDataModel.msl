@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BomberDataModelStoreContainer" CdmEntityContainer="BomberDbContext">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="IsTypeOf(BomberDataModel.Account)">
+        <MappingFragment StoreEntitySet="Accounts">
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Players">
+      <EntityTypeMapping TypeName="IsTypeOf(BomberDataModel.Player)">
+        <MappingFragment StoreEntitySet="Players">
+          <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+          <ScalarProperty Name="Pseudonym" ColumnName="Pseudonym" />
+          <ScalarProperty Name="PlayerStatus" ColumnName="PlayerStatus" />
+          <ScalarProperty Name="PlayerDescription" ColumnName="PlayerDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Games">
+      <EntityTypeMapping TypeName="IsTypeOf(BomberDataModel.Game)">
+        <MappingFragment StoreEntitySet="Games">
+          <ScalarProperty Name="GameId" ColumnName="GameId" />
+          <ScalarProperty Name="WinnerPlayerId" ColumnName="WinnerPlayerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Conversations">
+      <EntityTypeMapping TypeName="IsTypeOf(BomberDataModel.Conversation)">
+        <MappingFragment StoreEntitySet="Conversations">
+          <ScalarProperty Name="ConversationId" ColumnName="ConversationId" />
+          <ScalarProperty Name="ConversationLog" ColumnName="ConversationLog" />
+          <ScalarProperty Name="HostPlayerId" ColumnName="HostPlayerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AccountPlayer" TypeName="BomberDataModel.AccountPlayer" StoreEntitySet="Accounts">
+      <EndProperty Name="Player">
+        <ScalarProperty Name="PlayerId" ColumnName="Player_PlayerId" />
+      </EndProperty>
+      <EndProperty Name="Account">
+        <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ConversationPlayerParticipation" TypeName="BomberDataModel.ConversationPlayer" StoreEntitySet="ConversationPlayerParticipation">
+      <EndProperty Name="Conversation">
+        <ScalarProperty Name="ConversationId" ColumnName="Conversations_ConversationId" />
+      </EndProperty>
+      <EndProperty Name="Player">
+        <ScalarProperty Name="PlayerId" ColumnName="Players_PlayerId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ConversationGame" TypeName="BomberDataModel.ConversationGame" StoreEntitySet="Games">
+      <EndProperty Name="Conversation">
+        <ScalarProperty Name="ConversationId" ColumnName="Conversation_ConversationId" />
+      </EndProperty>
+      <EndProperty Name="Game">
+        <ScalarProperty Name="GameId" ColumnName="GameId" />
+      </EndProperty>
+      <Condition ColumnName="Conversation_ConversationId" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Friendships" TypeName="BomberDataModel.PlayerPlayer" StoreEntitySet="Friendships">
+      <EndProperty Name="Player">
+        <ScalarProperty Name="PlayerId" ColumnName="PlayerPlayer_Player1_PlayerId" />
+      </EndProperty>
+      <EndProperty Name="Player1">
+        <ScalarProperty Name="PlayerId" ColumnName="Friends_PlayerId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FriendshipRequests" TypeName="BomberDataModel.FriendshipRequests" StoreEntitySet="FriendshipRequests">
+      <EndProperty Name="Player">
+        <ScalarProperty Name="PlayerId" ColumnName="PlayersRequestingFriendship_PlayerId" />
+      </EndProperty>
+      <EndProperty Name="Player1">
+        <ScalarProperty Name="PlayerId" ColumnName="FriendshipRequestedPlayers_PlayerId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

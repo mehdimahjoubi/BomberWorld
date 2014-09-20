@@ -1,0 +1,2 @@
+c:\users\mehdi\documents\visual studio 2010\Projects\BombermanOnline\Bomberman\BombermanContent\obj\x86\Debug\BombermanContent.contentprojResolveAssemblyReference.cache
+C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\Bomberman\BombermanContent\obj\x86\Debug\BombermanContent.contentprojResolveAssemblyReference.cache

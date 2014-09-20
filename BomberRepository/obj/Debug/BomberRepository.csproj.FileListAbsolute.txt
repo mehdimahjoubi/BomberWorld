@@ -1,0 +1,6 @@
+C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\BomberRepository\bin\Debug\BomberRepository.dll.config
+C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\BomberRepository\bin\Debug\BomberRepository.dll
+C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\BomberRepository\bin\Debug\BomberRepository.pdb
+C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\BomberRepository\obj\Debug\BomberRepository.dll
+C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\BomberRepository\obj\Debug\BomberRepository.pdb
+C:\Users\Mehdi\Documents\Visual Studio 2010\Projects\BombermanOnlineV2\BomberRepository\obj\Debug\BomberRepository.csprojResolveAssemblyReference.cache
